@@ -33,14 +33,14 @@
 
     <script>
         var canvas,
-            canvasContext,
+            context,
             ballX = 50,
             ballSpeedX = 15;
 
         window.onload = function()  {
             console.log('wihdow is loaded');
             canvas = document.getElementById('gameCanvas');
-            canvasContext = canvas.getContext('2d');
+            context = canvas.getContext('2d');
 
             var framesPerSecond = 30;
             setInterval(function() {
@@ -56,7 +56,7 @@
             if(ballX > canvas.width){
                 ballSpeedX =- ballSpeedX;
             }
-            
+
             if(ballX < 0){
                 ballSpeedX =- ballSpeedX;
             }
@@ -67,13 +67,21 @@
             colorRect(0, 0, canvas.width, canvas.height, 'black');
             colorRect(0, 210, 10, 100, 'white');
             colorRect(790, 210, 10, 100, 'white');
-            colorRect(ballX, 100, 10, 10, 'red');
+            // colorRect(ballX, 100, 10, 10, 'red');
+            colorCircle(ballX, 50, 10, 'white');
         }
 
+        function colorCircle(centerX, centerY, radius, drawColor) {
+            context.fillStyle = drawColor;
+            context.beginPath();
+            context.arc(centreX, centerY, radius, 0, Math.PI*2, true);
+            context.fill();
+
+        }
         function colorRect(leftX, topY, width, height, drawColor){
 
-            canvasContext.fillStyle = drawColor;
-            canvasContext.fillRect(leftX, topY, width, height);
+            context.fillStyle = drawColor;
+            context.fillRect(leftX, topY, width, height);
 
         }
     </script>
