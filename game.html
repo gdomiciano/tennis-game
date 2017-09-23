@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tennis Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Megrim" rel="stylesheet">
+    <style>
+
+        *,
+        *::before,
+        *::after {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        [class*="brand"],
+        [class*="title"] {
+            font-family: 'Megrim', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="site-brand">Tennis Game</h1>
+    </header>
+    <canvas id="gameCanvas" width="800" height="600">
+
+    </canvas>
+
+
+    <script>
+        var canvas,
+            canvasContext,
+            ballX = 50,
+            ballSpeedX = 15;
+
+        window.onload = function()  {
+            console.log('wihdow is loaded');
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+
+            var framesPerSecond = 30;
+            setInterval(function() {
+                moveEverything();
+                drawEverything();
+
+            }, 1000/framesPerSecond);
+        }
+
+        function moveEverything(){
+            ballX = ballX + ballSpeedX ;
+
+            if(ballX > canvas.width){
+                ballSpeedX =- ballSpeedX;
+            }
+            
+            if(ballX < 0){
+                ballSpeedX =- ballSpeedX;
+            }
+        }
+
+        function drawEverything() {
+            //  1
+            colorRect(0, 0, canvas.width, canvas.height, 'black');
+            colorRect(0, 210, 10, 100, 'white');
+            colorRect(790, 210, 10, 100, 'white');
+            colorRect(ballX, 100, 10, 10, 'red');
+        }
+
+        function colorRect(leftX, topY, width, height, drawColor){
+
+            canvasContext.fillStyle = drawColor;
+            canvasContext.fillRect(leftX, topY, width, height);
+
+        }
+    </script>
+</body>
+</html>
