@@ -38,8 +38,10 @@
             ballSpeedX = 15,
             ballY = 10,
             ballSpeedY = 4,
-            paddleLeftY = 250;
-            paddleRightY = 250;
+            paddleLeftY = 250,
+            paddleRightY = 250,
+            player1Score = 0,
+            player2Score = 0;
 
         const PADDLE_HEIGHT = 100;
         const PADDLE_THICKNESS = 10;
@@ -80,8 +82,19 @@
             ballSpeedX =- ballSpeedX;
         }
 
+        function computerMovement() {
+            var paddleRightYCenter = paddleRightY + (PADDLE_HEIGHT/2);
+            if (paddleRightYCenter < ballY+35) {
+                paddleRightY += 6
+            } else {
+                paddleRightY -= 6
+
+            }
+        }
         function moveEverything(){
-            ballX = ballX + ballSpeedX ;
+            computerMovement();
+            ballY += ballSpeedY ;
+            ballX += ballSpeedX ;
 
             if(ballX > canvas.width){
                 if (ballY > paddleRightY && ballY < paddleRightY+PADDLE_HEIGHT) {
@@ -89,6 +102,7 @@
                     ballSpeedX =- ballSpeedX;
                 } else {
                     ballReset();
+                    player1Score++;
                 }
             }
 
@@ -99,9 +113,9 @@
                     ballSpeedX =- ballSpeedX;
                 } else {
                     ballReset();
+                    player2Score++
                 }
             }
-            ballY = ballY + ballSpeedY ;
 
             if(ballY > canvas.height){
                 ballSpeedY =- ballSpeedY;
@@ -117,8 +131,10 @@
             colorRect(0, 0, canvas.width, canvas.height, 'black');
             colorRect(0, paddleLeftY, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
             colorRect(canvas.width - PADDLE_THICKNESS, paddleRightY, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
-            // colorRect(ballX, 100, 10, 10, 'red');
             colorCircle(ballX, ballY, 10, 'white');
+            context.fillText(player1Score, 100, 100);
+            context.fillText(player2Score, canvas.width-100, 100);
+
         }
 
         function colorCircle(centerX, centerY, radius, drawColor) {
