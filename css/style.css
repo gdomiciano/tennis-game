@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+[class*="brand"],
+[class*="title"] {
+    font-family: 'Megrim', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#gameCanvas {
+    display: block;
+    margin: 0px auto;
+}
