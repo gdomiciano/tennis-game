@@ -1,6 +1,10 @@
 # Tennis Game
 HTML5 and javascript tennis game developed based on this course: https://www.udemy.com/code-your-first-game/learn/v4/overview
 
+
+**Here is the live [Demo](https://gdomiciano.github.io/tennis-game/)**
+
+
 <img src="https://raw.githubusercontent.com/gdomiciano/tennis-game/master/img/game-view.png" align="center">
 
 ## Why
