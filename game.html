@@ -35,8 +35,24 @@
         var canvas,
             context,
             ballX = 50,
-            ballSpeedX = 15;
+            ballSpeedX = 15,
+            ballY = 10,
+            ballSpeedY = 4,
+            paddleY = 250;
 
+        const PADDLE_HEIGHT = 100;
+
+        function calculateMousePos(e) {
+            var rect = canvas.getBoundingClientRect(),
+                root = document.documentElement;
+                mouseX = e.clientX - rect.left - root.scrollLeft;
+                mouseY = e.clientY - rect.top - root.scrollTop;
+                console.log(e, rect, root);
+                return{
+                    x: mouseX,
+                    y: mouseY
+                }
+        }
         window.onload = function()  {
             console.log('wihdow is loaded');
             canvas = document.getElementById('gameCanvas');
@@ -48,6 +64,11 @@
                 drawEverything();
 
             }, 1000/framesPerSecond);
+
+            canvas.addEventListener('mousemove', function(e) {
+                var mousePos = calculateMousePos(e);
+                paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
+            })
         }
 
         function moveEverything(){
@@ -60,24 +81,34 @@
             if(ballX < 0){
                 ballSpeedX =- ballSpeedX;
             }
+            ballY = ballY + ballSpeedY ;
+
+            if(ballY > canvas.height){
+                ballSpeedY =- ballSpeedY;
+            }
+
+            if(ballY < 0){
+                ballSpeedY =- ballSpeedY;
+            }
         }
 
         function drawEverything() {
-            //  1
+
             colorRect(0, 0, canvas.width, canvas.height, 'black');
-            colorRect(0, 210, 10, 100, 'white');
+            colorRect(0, paddle1Y, 10, PADDLE_HEIGHT, 'white');
             colorRect(790, 210, 10, 100, 'white');
             // colorRect(ballX, 100, 10, 10, 'red');
-            colorCircle(ballX, 50, 10, 'white');
+            colorCircle(ballX, ballY, 10, 'white');
         }
 
         function colorCircle(centerX, centerY, radius, drawColor) {
             context.fillStyle = drawColor;
             context.beginPath();
-            context.arc(centreX, centerY, radius, 0, Math.PI*2, true);
+            context.arc(centerX, centerY, radius, 0, Math.PI*2, true);
             context.fill();
 
         }
+
         function colorRect(leftX, topY, width, height, drawColor){
 
             context.fillStyle = drawColor;
