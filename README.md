@@ -8,6 +8,7 @@ In ordem to learn a little bit about canvas I developed this simple Tennis game,
 ## Stack
 
 This project is using basically:
-    - HTML5
-    - Javascript (ES5)
-    - CSS
+
+    * HTML5
+    * Javascript (ES5)
+    * CSS
