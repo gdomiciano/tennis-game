@@ -9,7 +9,7 @@ HTML5 and javascript tennis game developed based on this course: https://www.ude
 
 ## Why
 
-In ordem to learn a little bit about canvas I developed this simple Tennis game, so I could understand better how things works with canvas and to get to known some properties that might be useful.
+In order to learn a little bit about canvas I developed this simple Tennis game, so I could understand better how things works with canvas and to get to known some properties that might be useful.
 
 ## Stack
 
